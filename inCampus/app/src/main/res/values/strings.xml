@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">inCampus</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_forget_password">ForgetPassword</string>
+    <string name="fpw_help">Please enter your matriculation number in the field below to request for password</string>
+</resources>
