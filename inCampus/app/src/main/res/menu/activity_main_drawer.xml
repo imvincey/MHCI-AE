@@ -4,32 +4,28 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_event"
-            android:title="Event Attended"
-            android:textColor="@color/primary_darker"/>
+            android:title="Events Attended" />
         <item
-            android:id="@+id/nav_coupon"
-            android:title="Coupon Redeemed"
-            android:textColor="@color/primary_darker"/>
-
+            android:id="@+id/nav_coupons"
+            android:title="Coupons Redeemed" />
         <item
-            android:id="@+id/nav_setting"
-            android:title="Settings"
-            android:textColor="@color/primary_darker"/>
-
+            android:id="@+id/nav_settings"
+            android:title="Settings" />
         <item
             android:id="@+id/nav_logout"
-            android:title="Logout"
-            android:textColor="@color/primary_darker"/>
+            android:title="Logout" />
     </group>
 
-    <item android:title="Reserve">
+    <item android:title="Reserved">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:title="Share" />
+                android:icon="@drawable/ic_menu_share"
+                android:title="Reserved" />
             <item
                 android:id="@+id/nav_send"
-                android:title="Send" />
+                android:icon="@drawable/ic_menu_send"
+                android:title="Reserved" />
         </menu>
     </item>
 

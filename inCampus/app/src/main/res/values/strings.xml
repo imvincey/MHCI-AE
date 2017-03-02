@@ -6,4 +6,5 @@
     <string name="fpw_help">Please enter your matriculation number in the field below to request for password</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_main">Home</string>
 </resources>
