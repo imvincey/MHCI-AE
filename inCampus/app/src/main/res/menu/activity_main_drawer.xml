@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_event"
+            android:title="Event Attended"
+            android:textColor="@color/primary_darker"/>
+        <item
+            android:id="@+id/nav_coupon"
+            android:title="Coupon Redeemed"
+            android:textColor="@color/primary_darker"/>
+
+        <item
+            android:id="@+id/nav_setting"
+            android:title="Settings"
+            android:textColor="@color/primary_darker"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Logout"
+            android:textColor="@color/primary_darker"/>
+    </group>
+
+    <item android:title="Reserve">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

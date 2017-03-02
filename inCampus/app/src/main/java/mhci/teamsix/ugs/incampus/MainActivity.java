@@ -1,25 +1,74 @@
 package mhci.teamsix.ugs.incampus;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.os.Handler;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+    UserSessionManager session;
+    boolean exitByBackPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-        //Intent intent = new Intent(this, LoginActivity.class);
-        //startActivity(intent);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View nav_view = navigationView.getHeaderView(0);
+        TextView _matricText = (TextView) nav_view.findViewById(R.id.user_matric);
+        TextView _emailAddress = (TextView) nav_view.findViewById(R.id.user_email);
+
+        session = new UserSessionManager(getApplicationContext());
+        String userid = session.getUserDetails();
+        _matricText.setText(userid);
+        String email = userid + "@student.gla.ac.uk";
+        _emailAddress.setText(email);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            // Disable going back to the MainActivity
+            if (exitByBackPressed) {
+                super.onBackPressed();
+                finish();
+            }
+
+            this.exitByBackPressed = true;
+            Toast.makeText(this, "Press back again to exit the application", Toast.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exitByBackPressed = false;
+                }
+            }, 10000);
+        }
     }
 
     @Override
@@ -37,18 +86,38 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void logout (){
-        SharedPreferences shared = getSharedPreferences(LoginActivity.inCampusSession, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = shared.edit();
-        editor.clear();
-        editor.commit();
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
 
+        if (id == R.id.nav_event) {
+            // Handle the camera action
+        } else if (id == R.id.nav_coupon) {
+
+        } else if (id == R.id.nav_setting) {
+
+        } else if (id == R.id.nav_logout) {
+            logout();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public void logout (){
+        View view = findViewById(R.id.drawer_layout);
+        session = new UserSessionManager(view.getContext());
+        session.logoutUser();
+        finish();
     }
 }

@@ -2,6 +2,7 @@ package mhci.teamsix.ugs.incampus;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -26,10 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_forgotPass) TextView _forgotPass;
 
-    //session
-    public static final String inCampusSession = "SESSION_ID";
-    public static final String matric_no = "matric_no";
-    SharedPreferences sharedpref;
+    UserSessionManager session;
+    boolean exitByBackPressed = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,16 +73,13 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        sharedpref = getSharedPreferences(inCampusSession, Context.MODE_PRIVATE);
-
         String matric = _matricText.getText().toString();
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
         if (matric.equals("2228131l") && password.equals("1")) {
-            SharedPreferences.Editor editor = sharedpref.edit();
-            editor.putString("inCampusSession", "loggedin");
-            editor.putString("matric_no", matric);
+            session = new UserSessionManager(getApplicationContext());
+            session.createUserLoginSession(matric);
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
@@ -122,11 +118,26 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
-        moveTaskToBack(true);
+        if (exitByBackPressed) {
+            super.onBackPressed();
+            finish();
+        }
+
+        this.exitByBackPressed = true;
+        Toast.makeText(this, "Press back again to exit the application", Toast.LENGTH_LONG).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                exitByBackPressed = false;
+            }
+        }, 10000);
     }
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+        Intent next = new Intent(this, MainActivity.class);
+        startActivity(next);
         finish();
     }
 
