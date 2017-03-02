@@ -3,16 +3,24 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_48dp"
+            android:title="Home" />
+        <item
             android:id="@+id/nav_event"
+            android:icon="@drawable/ic_event_black_48dp"
             android:title="Events Attended" />
         <item
             android:id="@+id/nav_coupons"
+            android:icon="@drawable/ic_local_play_black_48dp"
             android:title="Coupons Redeemed" />
         <item
             android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_48dp"
             android:title="Settings" />
         <item
             android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_48dp"
             android:title="Logout" />
     </group>
 
