@@ -1,10 +1,12 @@
-package mhci.teamsix.ugs.incampus;
+package mhci.teamsix.ugs.incampus.util;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.util.HashMap;
+
+import mhci.teamsix.ugs.incampus.LoginActivity;
 
 /**
  * Created by Vincey on 28/2/2017.

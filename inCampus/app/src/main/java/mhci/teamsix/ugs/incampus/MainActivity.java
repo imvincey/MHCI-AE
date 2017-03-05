@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import mhci.teamsix.ugs.incampus.util.UserSessionManager;
+import mhci.teamsix.ugs.incampus.util.ViewPagerAdapter;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

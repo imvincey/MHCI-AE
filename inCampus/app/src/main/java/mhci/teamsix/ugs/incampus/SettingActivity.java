@@ -9,6 +9,8 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import mhci.teamsix.ugs.incampus.util.UserSessionManager;
+
 public class SettingActivity extends AppCompatActivity {
     ActionBar actionBar;
     SeekBar distanceSeekBar;

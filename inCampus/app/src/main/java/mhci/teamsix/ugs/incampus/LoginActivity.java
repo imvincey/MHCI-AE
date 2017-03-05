@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
+import mhci.teamsix.ugs.incampus.util.UserSessionManager;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";

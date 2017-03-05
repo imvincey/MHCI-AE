@@ -1,12 +1,10 @@
 package mhci.teamsix.ugs.incampus;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInstaller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+
+import mhci.teamsix.ugs.incampus.util.UserSessionManager;
 
 public class SplashScreen extends AppCompatActivity {
 
