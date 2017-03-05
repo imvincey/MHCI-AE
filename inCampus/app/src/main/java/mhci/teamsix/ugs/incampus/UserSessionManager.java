@@ -24,6 +24,12 @@ public class UserSessionManager {
         editor = sharedPref.edit();
     }
 
+    public void userSettings(int distance, boolean noti){
+        editor.putInt("distance", distance);
+        editor.putBoolean("notification", noti);
+        editor.apply();
+    }
+
     public void createUserLoginSession(String matric_no){
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString("matric_no", matric_no);
@@ -41,6 +47,10 @@ public class UserSessionManager {
     public String getUserDetails(){
         return sharedPref.getString("matric_no", "");
     }
+
+    public int getDistance(){return sharedPref.getInt("distance" , 0);}
+
+    public boolean getNoti(){return sharedPref.getBoolean("notification", true);}
 
     public void logoutUser(){
         editor.clear();

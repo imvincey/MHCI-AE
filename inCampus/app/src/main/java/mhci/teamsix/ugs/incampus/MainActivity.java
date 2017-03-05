@@ -1,14 +1,10 @@
 package mhci.teamsix.ugs.incampus;
 
-import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +22,8 @@ public class MainActivity extends AppCompatActivity
 
     UserSessionManager session;
     boolean exitByBackPressed = false;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,20 @@ public class MainActivity extends AppCompatActivity
         String email = userid + "@student.gla.ac.uk";
         _emailAddress.setText(email);
 
-        HomeFragment frag = new HomeFragment();
-        FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
-        fm.replace(R.id.fragmentFrame, frag, "Home");
-        fm.commit();
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), "Home");
+        adapter.addFragment(new NorthFragment(), "North");
+        adapter.addFragment(new SouthFragment(), "South");
+        adapter.addFragment(new LawnFragment(), "Lawn");
+        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -106,36 +114,25 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
-        Class fragmentClass;
+
         if (id == R.id.nav_home) {
-            fragmentClass = HomeFragment.class;
+
         } else if (id == R.id.nav_event) {
-            fragmentClass = EventFragment.class;
-        } else if (id == R.id.nav_coupons) {
-            fragmentClass = CouponFragment.class;
-        } else if (id == R.id.nav_settings) {
-            fragmentClass = SettingFragment.class;
-        } else if (id == R.id.nav_logout) {
-            logout();
+            Intent next = new Intent(this, EventActivity.class);
+            startActivity(next);
             return true;
-        } else if (id == R.id.nav_share){
+        } else if (id == R.id.nav_coupons) {
+            Intent next = new Intent(this, CouponActivity.class);
+            startActivity(next);
+            return true;
+        } else if (id == R.id.nav_settings) {
             Intent next = new Intent(this, SettingActivity.class);
             startActivity(next);
             return true;
-        } else{
-            fragmentClass = EventFragment.class;
+        } else if (id == R.id.nav_logout) {
+            logout();
+            return true;
         }
-
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragmentFrame, fragment).commit();
 
         // Highlight the selected item has been done by NavigationView
         item.setChecked(true);
