@@ -1,10 +1,10 @@
 package mhci.teamsix.ugs.incampus.util;
 
 import android.content.Context;
-import android.support.v7.widget.PopupMenu;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import mhci.teamsix.ugs.incampus.R;
+import mhci.teamsix.ugs.incampus.ui.StoreDetails;
 
 
 /**
@@ -37,31 +38,39 @@ public class FoodStoreAdapter extends RecyclerView.Adapter<ViewCardHolder>{
 
     @Override
     public void onBindViewHolder(final ViewCardHolder holder, int position) {
-        FoodStore album = storeList.get(position);
-        holder.storeName.setText(album.getName());
-        holder.byUser.setText("Vince The Great");
+        final FoodStore foodStore = storeList.get(position);
+        holder.storeName.setText(foodStore.getName());
+        String location;
+        if (foodStore.getLocation().equals("n")){
+            location = "North Canteen";
+        } else if (foodStore.getLocation().equals("s")){
+            location = "South Canteen";
+        } else if (foodStore.getLocation().equals("l")){
+            location = "Lawn";
+        } else {
+            location = "unknown";
+        }
+        holder.byUser.setText(location);
 
-        // loading album cover using Glide library
-        Glide.with(appContext).load(album.getImage()).into(holder.thumbnail);
+        Glide.with(appContext).load(foodStore.getImg()[0]).into(holder.thumbnail);
 
-        holder.settingImg.setOnClickListener(new View.OnClickListener() {
+
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.settingImg);
+                Intent next = new Intent(view.getContext(), StoreDetails.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("foodStore_details", foodStore);
+                next.putExtras(bundle);
+                view.getContext().startActivity(next);
             }
         });
+
     }
     /**
      * Showing popup menu when tapping on 3 dots
      */
-    private void showPopupMenu(View view) {
-        // inflate menu
-        PopupMenu popup = new PopupMenu(appContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.card_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener(appContext));
-        popup.show();
-    }
+
 
     @Override
     public int getItemCount() {

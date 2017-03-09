@@ -2,14 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mhci.teamsix.ugs.incampus">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark">
@@ -20,23 +23,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ForgetPassword"
+            android:name=".ui.ForgetPassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="Places to eat"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".ui.SettingActivity"
+            android:screenOrientation="portrait"
             android:label="Settings"
             android:theme="@style/SCBSwitch" />
-        <activity android:name=".EventActivity" />
-        <activity android:name=".CouponActivity"></activity>
+        <activity android:name=".ui.EventNearest"
+            android:screenOrientation="portrait"
+            android:label="Available Events Near You"
+            android:theme="@style/AppTheme.StandardTemplate"/>
+        <activity android:name=".ui.CouponActivity"
+            android:screenOrientation="portrait"
+            android:label="Coupon Redeemed"
+            android:theme="@style/AppTheme.StandardTemplate"/>
+        <activity android:name=".ui.StoreDetails"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:theme="@style/AppTheme.ActionBar.Transparent"/>
+        <activity android:name=".ui.EventAvailableActivity"
+            android:screenOrientation="portrait"
+            android:label="Available Events"
+            android:theme="@style/AppTheme.StandardTemplate"/>
+        <activity android:name=".ui.EventDetails"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:theme="@style/AppTheme.ActionBar.Transparent"/>
     </application>
 
 </manifest>

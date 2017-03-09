@@ -1,45 +1,39 @@
 package mhci.teamsix.ugs.incampus.util;
 
-import java.util.HashMap;
+import java.io.Serializable;
 
 /**
  * Created by Vincey on 6/3/2017.
  */
 
-public class FoodStore {
+public class FoodStore implements Serializable {
+    private String sid;
     private String name;
-    private int likes;
-    private int lastPosted;
-    private String[] imageurl;
-    private String phone;
-    private int startPrice;
-    private int endPrice;
-    private HashMap<String, String> userComments = new HashMap<String, String>();
-    private int reviews;
-
-    private int image;
-    private String author;
-    public FoodStore(String name, String author, int image){
-        this.name = name;
-        this.author = author;
-        this.image = image;
-    }
+    private String price_range;
+    private String desc;
+    private String[] img;
+    private String location;
+    private String coupon;
 
     public FoodStore() {
-
     }
 
-    public FoodStore(String name, int likes, int lastPosted, String[] imageurl, String phone, int startPrice, int endPrice, HashMap<String, String> userComments, int reviews) {
+    public FoodStore(String sid, String name, String price_range, String desc, String img[], String location, String coupon) {
+        this.sid = sid;
         this.name = name;
-        this.likes = likes;
-        this.lastPosted = lastPosted;
-        this.imageurl = imageurl;
-        this.phone = phone;
-        this.startPrice = startPrice;
-        this.endPrice = endPrice;
-        this.userComments = userComments;
-        this.reviews = reviews;
+        this.price_range = price_range;
+        this.desc = desc;
+        this.img = img;
+        this.location = location;
+        this.coupon = coupon;
+    }
 
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 
     public String getName() {
@@ -50,70 +44,43 @@ public class FoodStore {
         this.name = name;
     }
 
-    public int getLikes() {
-        return likes;
+    public String getPrice_range() {
+        return price_range;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setPrice_range(String price_range) {
+        this.price_range = price_range;
     }
 
-    public int getLastPosted() {
-        return lastPosted;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setLastPosted(int lastPosted) {
-        this.lastPosted = lastPosted;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public String[] getImageurl() {
-        return imageurl;
+    public String[] getImg() {
+        return img;
     }
 
-    public void setImageurl(String[] imageurl) {
-        this.imageurl = imageurl;
+    public void setImg(String[] img) {
+        this.img = img;
     }
 
-    public int getImage(){return image;}
-    public void setImage(int image){this.image = image;}
-
-    public String getPhone() {
-        return phone;
+    public String getLocation() {
+        return location;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public int getStartPrice() {
-        return startPrice;
+    public String getCoupon() {
+        return coupon;
     }
 
-    public void setStartPrice(int startPrice) {
-        this.startPrice = startPrice;
-    }
-
-    public int getEndPrice() {
-        return endPrice;
-    }
-
-    public void setEndPrice(int endPrice) {
-        this.endPrice = endPrice;
-    }
-
-    public HashMap<String, String> getUserComments() {
-        return userComments;
-    }
-
-    public void setUserComments(HashMap<String, String> userComments) {
-        this.userComments = userComments;
-    }
-
-    public int getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(int reviews) {
-        this.reviews = reviews;
+    public void setCoupon(String coupon) {
+        this.coupon = coupon;
     }
 }

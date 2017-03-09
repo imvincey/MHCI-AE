@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mhci.teamsix.ugs.incampus.ui.EventNearest">
+
+    <ProgressBar
+        android:id="@+id/progbar_event_nearest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="26dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <include layout="@layout/content_event_nearest" />
+
+</LinearLayout>

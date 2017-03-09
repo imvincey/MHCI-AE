@@ -13,12 +13,11 @@ import mhci.teamsix.ugs.incampus.R;
 
 public class ViewCardHolder extends RecyclerView.ViewHolder{
     public TextView storeName, byUser;
-    public ImageView thumbnail, settingImg;
+    public ImageView thumbnail;
     public ViewCardHolder (View view){
         super(view);
         thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
         storeName = (TextView) view.findViewById (R.id.shop_name);
         byUser = (TextView) view.findViewById(R.id.author);
-        settingImg = (ImageView) view.findViewById(R.id.settingImg);
     }
 }

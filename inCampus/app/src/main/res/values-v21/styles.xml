@@ -7,4 +7,9 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:colorPrimaryDark">@color/cyan_dark</item>
     </style>
+
+    <style name="AppTheme.ActionBar.Transparent" parent="AppTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+    </style>
+
 </resources>

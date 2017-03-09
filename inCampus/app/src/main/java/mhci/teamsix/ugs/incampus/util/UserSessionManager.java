@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import java.util.HashMap;
-
-import mhci.teamsix.ugs.incampus.LoginActivity;
+import mhci.teamsix.ugs.incampus.ui.LoginActivity;
 
 /**
  * Created by Vincey on 28/2/2017.
@@ -36,6 +34,15 @@ public class UserSessionManager {
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString("matric_no", matric_no);
         editor.apply();
+    }
+
+    public void setBeaconId(String id){
+        editor.putString("beacon_id", id);
+        editor.apply();
+    }
+
+    public String getBeaconId(){
+        return sharedPref.getString("beacon_id", "-1");
     }
 
     public boolean checkLogin(){

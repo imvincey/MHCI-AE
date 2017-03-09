@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import mhci.teamsix.ugs.incampus.LawnFragment;
-import mhci.teamsix.ugs.incampus.NorthFragment;
-import mhci.teamsix.ugs.incampus.SouthFragment;
+import mhci.teamsix.ugs.incampus.ui.LawnFragment;
+import mhci.teamsix.ugs.incampus.ui.NorthFragment;
+import mhci.teamsix.ugs.incampus.ui.SouthFragment;
 
 /**
  * Created by Vincey on 3/3/2017.
